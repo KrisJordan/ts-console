@@ -1,0 +1,39 @@
+html {
+    background: whitesmoke;
+}
+
+.App {
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.App-header {
+  background-color: #222;
+  height: 64px;
+  padding: 0;
+  color: white;
+  position: fixed;
+  width: 100%;
+  margin: 0;
+  top: 0;
+}
+
+.App-log {
+  top: 64px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  position: relative;
+  text-align: left;
+  font-size: larger;
+}
+
+.App-log-message {
+  padding: 16px 0;
+  border-bottom: 1px solid lightgray;
+}
+
+.App-log-message-type {
+  font-size: x-small;
+  color: gray;
+}
