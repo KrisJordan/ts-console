@@ -27,13 +27,3 @@ html {
   text-align: left;
   font-size: larger;
 }
-
-.App-log-message {
-  padding: 16px 0;
-  border-bottom: 1px solid lightgray;
-}
-
-.App-log-message-type {
-  font-size: x-small;
-  color: gray;
-}

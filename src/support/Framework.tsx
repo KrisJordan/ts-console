@@ -7,13 +7,19 @@ import "./Framework.css";
 
 class Framework {
 
-    static init() {
-        let log: Log = new Log();
-        ConsoleDispatch.instance(log);
-        Framework.render(log);
+    static log: Log;
+
+    static init(): void {
+        Framework.log = new Log();
+        ConsoleDispatch.instance(Framework.log);
+        Framework.render(Framework.log);
     }
 
-    private static render(logger: Log) {
+    static print(s: string): void {
+        console.log(s);
+    }
+
+    private static render(logger: Log): void {
         ReactDOM.render(
             <App logger={logger} />,
             document.getElementById("root") as HTMLElement

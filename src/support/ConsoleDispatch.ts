@@ -1,5 +1,5 @@
 import Log from "./Log";
-import {MessageEntry, PromptEntry} from "./LogEntry";
+import {MessageEntry, StringPromptEntry, NumberPromptEntry} from "./LogEntry";
 
 class ConsoleDispatch {
 
@@ -19,7 +19,15 @@ class ConsoleDispatch {
     }
 
     public stringPrompt = (prompt: string, cb: (s: string) => void): void => {
-        this._logger.log(new PromptEntry(prompt, cb));
+        this._logger.log(new StringPromptEntry(prompt, cb));
+    }
+
+    public promptNumber = (prompt: string, cb: (n: number) => void): void => {
+        this._logger.log(new NumberPromptEntry(prompt, cb));
+    }
+
+    public clear = (): void => {
+        this._logger.clear();
     }
 
     private constructor(logger: Log) {

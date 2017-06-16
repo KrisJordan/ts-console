@@ -7,5 +7,7 @@
 import Framework from "./support/Framework";
 Framework.init();
 
+require("./support/GlobalsHack");
+
 // Run Student Project Code
 require("./main");

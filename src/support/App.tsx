@@ -3,13 +3,15 @@ import "./App.css";
 import {observer} from "mobx-react";
 import Log from "./Log";
 import {LogEntry, MessageEntry, PromptEntry} from "./LogEntry";
+import Message from "./components/Message";
+import Prompt from "./components/Prompt";
 
 @observer
 class App extends React.Component<{logger: Log}, void> {
 
   messagesEnd: HTMLDivElement;
 
-  render() {
+  render(): JSX.Element {
     return (
       <div className="App">
         <div className="App-header">
@@ -26,31 +28,13 @@ class App extends React.Component<{logger: Log}, void> {
     );
   }
 
-  renderEntry(entry: LogEntry, index: number) {
+  renderEntry(entry: LogEntry, index: number): JSX.Element {
     if (entry instanceof MessageEntry) {
-      let message: string;
-      let type: string;
-      if (entry.message === null) {
-        message = "null";
-        type = "null";
-      } else {
-        message = entry.message.toString();
-        type = entry.message.constructor.name.toLowerCase();
-      }
-      return (
-              <div key={`entry-${index}`} className="App-log-message">
-                <div className="App-log-message-message">{message}</div>
-                <div className="App-log-message-type">{type}</div>
-              </div>
-              );
+      return <Message entry={entry} key={entry.id} />;
     } else if (entry instanceof PromptEntry) {
-      type EventHandler = (e: React.ChangeEvent<HTMLInputElement>) => void;
-      let callback: EventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        entry.cb(e.target.value);
-      };
-      return <div>{entry.prompt}: <input type="text" onChange={callback} /></div>;
+      return <Prompt entry={entry} key={entry.id} />;
     } else {
-      return <div key={`entry-${index}`}>{entry.toString()}</div>;
+      return <div key={entry.id} >{entry.toString()}</div>;
     }
   }
 
@@ -58,11 +42,11 @@ class App extends React.Component<{logger: Log}, void> {
     this.messagesEnd.scrollIntoView({behavior: "smooth"});
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.scrollToBottom();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(): void {
     setTimeout(() => {this.scrollToBottom(); }, 0);
   }
 
